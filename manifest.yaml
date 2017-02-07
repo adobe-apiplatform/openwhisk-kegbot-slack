@@ -7,3 +7,7 @@ package:
       version: 1.0
       location: kegbot-slack-0.0.1.js
       runtime: nodejs@6
+      inputs:
+        slack_webhook_url:
+          type: String
+          description: Slack Incoming Webhook URL.
