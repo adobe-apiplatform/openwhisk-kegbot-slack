@@ -190,17 +190,17 @@ function main(params) {
 
             var webhook = new IncomingWebhook(url);
 
-            // data.drink.user.display_name  poured data.drink.volume_ml of data.drink.keg.beverage.name
             console.log(params);
 
-            var slack_message_text = params.data.drink.user.display_name + " poured " + params.data.drink.volume_ml + " ml of " + params.data.drink.keg.beverage.name;
+            var volume_oz = Math.round(params.data.drink.volume_ml * 0.033814 * 100 ) / 100;
+            var slack_message_text = params.data.drink.user.display_name + " poured " + volume_oz + "oz of " + params.data.drink.keg.beverage.name;
 
             var slack_message = {
                 attachments: [
                     {
                         fallback: slack_message_text,
                         color: "#36a64f",
-                        pretext: slack_message_text,
+                        pretext: "",
                         text: slack_message_text,
                         "image_url": params.data.drink.images[0].original_url,
                         "thumb_url": params.data.drink.images[0].thumbnail_url,
