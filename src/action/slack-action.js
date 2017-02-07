@@ -191,10 +191,9 @@ function main(params) {
             var webhook = new IncomingWebhook(url);
 
             // data.drink.user.display_name  poured data.drink.volume_ml of data.drink.keg.beverage.name
+            console.log(params);
 
-
-
-            webhook.send(data.drink.user.display_name + " poured " + data.drink.volume_ml + " ml of " + data.drink.keg.beverage.name,
+            webhook.send(params.data.drink.user.display_name + " poured " + params.data.drink.volume_ml + " ml of " + params.data.drink.keg.beverage.name,
                 function (err, res) {
                     if (err) {
                         console.log('Error:', err);

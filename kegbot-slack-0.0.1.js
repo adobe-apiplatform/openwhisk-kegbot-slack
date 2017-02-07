@@ -76607,7 +76607,7 @@ function extend() {
  * @returns {Promise}
  */function main(a){return new Promise(function(b,c){//send message to slack channel
 try{var d=require("@slack/client").IncomingWebhook}catch(g){console.log(g),c({message:"Could not load @slack/client",error:g.toString()})}var e=a.slack_webhook_url,f=new d(e);// data.drink.user.display_name  poured data.drink.volume_ml of data.drink.keg.beverage.name
-f.send(data.drink.user.display_name+" poured "+data.drink.volume_ml+" ml of "+data.drink.keg.beverage.name,function(g,h){g?(console.log("Error:",g),c(a)):(console.log("Message sent: ",h),b(a))})})}exports.default=main;
+console.log(a),f.send(a.data.drink.user.display_name+" poured "+a.data.drink.volume_ml+" ml of "+a.data.drink.keg.beverage.name,function(g,h){g?(console.log("Error:",g),c(a)):(console.log("Message sent: ",h),b(a))})})}exports.default=main;
 
 },{"@slack/client":1}]},{},[]);
 var main = require('main-action').default;
