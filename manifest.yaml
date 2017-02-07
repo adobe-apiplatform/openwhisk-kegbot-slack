@@ -1,0 +1,9 @@
+package:
+  name: kegbot-slack
+  version: 1.0
+  license: Apache-2.0
+  actions:
+    kegbot-slack-action:
+      version: 1.0
+      location: kegbot-slack-0.0.1.js
+      runtime: nodejs@6

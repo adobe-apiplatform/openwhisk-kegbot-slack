@@ -1,0 +1,80 @@
+{
+  "name": "kegbot-slack",
+  "version": "0.0.1",
+  "description": "Openwhisk Action integrating Kegbot with Slack",
+  "main": "./src/action/slack-action.js",
+  "scripts": {
+    "start": "babel-watch ./test/server/index.js",
+    "test": "babel-node ./node_modules/.bin/isparta cover _mocha",
+    "test_no_cov": "mocha --compilers js:babel-register",
+    "prepublish__": "babel src --out-file ${npm_package_name}-${npm_package_version}.js",
+    "fix_pkginfo": "replace 'var pkginfo.*' 'module.exports.name=\"@slack/client\";module.exports.version=\"3.8.1\";' -r ./node_modules/@slack/client",
+    "fix_agent_base": "replace 'require.*patch-core' '//removed patch-core ...' -r ./node_modules/agent-base",
+    "prepublish": "npm run fix_pkginfo && npm run fix_agent_base && browserify --node -r ./src/action/slack-action.js:main-action > ${npm_package_name}-${npm_package_version}.js && npm run whisk_wrapper",
+    "whisk_wrapper": "echo \"var main = require('main-action').default;\" >> ${npm_package_name}-${npm_package_version}.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/adobe-apiplatform/openwhisk-kegbot-slack.git"
+  },
+  "author": "Dragos Dascalita Haut <ddascal@adobe.com>",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@slack/client": "^3.8.1",
+    "bufferutil": "^2.0.0",
+    "utf-8-validate": "^3.0.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-core": "^6.16.0",
+    "babel-preset-babili": "0.0.9",
+    "babel-preset-latest": "^6.16.0",
+    "babelify": "^7.3.0",
+    "browserify": "^13.1.1",
+    "chai": "^3.5.0",
+    "chai-as-promised": "^6.0.0",
+    "eslint": "^3.15.0",
+    "isparta": "^4.0.0",
+    "istanbul": "^0.3.17",
+    "lintify": "^1.1.0",
+    "mocha": "^2.5.3",
+    "replace": "^0.3.0",
+    "supertest": "^1.1.0",
+    "supertest-as-promised": "^2.0.2"
+  },
+  "browserify": {
+    "transform": [
+      [
+        "babelify"
+      ],
+      [
+        "lintify"
+      ]
+    ]
+  },
+  "babel": {
+    "presets": [
+      "latest",
+      "babili"
+    ]
+  },
+  "eslintConfig": {
+    "env": {
+      "browser": false,
+      "node": true
+    },
+    "globals": {
+      "window": false
+    },
+    "parserOptions": {
+      "ecmaVersion": 6
+    }
+  },
+  "bugs": {
+    "url": "https://github.com/adobe-apiplatform/openwhisk-kegbot-slack"
+  },
+  "homepage": "https://github.com/adobe-apiplatform/openwhisk-kegbot-slack",
+  "keywords": [
+    "serverless, openwhisk, es6-action"
+  ]
+}
