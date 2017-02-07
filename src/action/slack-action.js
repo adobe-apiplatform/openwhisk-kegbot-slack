@@ -194,6 +194,7 @@ function main(params) {
 
             var volume_oz = Math.round(params.data.drink.volume_ml * 0.033814 * 100 ) / 100;
             var slack_message_text = params.data.drink.user.display_name + " poured " + volume_oz + "oz of " + params.data.drink.keg.beverage.name;
+            var images = params.data.drink.images;
 
             var slack_message = {
                 attachments: [
@@ -202,8 +203,8 @@ function main(params) {
                         color: "#36a64f",
                         pretext: "",
                         text: slack_message_text,
-                        "image_url": params.data.drink.images[0].original_url,
-                        "thumb_url": params.data.drink.images[0].thumbnail_url,
+                        "image_url": images !== null && typeof(images) !== "undefined" ? images[0].original_url : params.data.drink.keg.illustration_thumbnail_url,
+                        "thumb_url": images !== null && typeof(images) !== "undefined" ? images[0].thumbnail_url : params.data.drink.keg.illustration_thumbnail_url,
                         "footer": "Kegbot API",
                         "footer_icon": "https://platform.slack-edge.com/img/default_application_icon.png"
                     }
