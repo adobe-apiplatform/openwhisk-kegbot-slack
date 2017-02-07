@@ -76606,8 +76606,8 @@ function extend() {
  }
  * @returns {Promise}
  */function main(a){return new Promise(function(b,c){//send message to slack channel
-try{var d=require("@slack/client").IncomingWebhook}catch(g){console.log(g),c({message:"Could not load @slack/client",error:g.toString()})}var e=a.slack_webhook_url,f=new d(e);// data.drink.user.display_name  poured data.drink.volume_ml of data.drink.keg.beverage.name
-console.log(a),f.send(a.data.drink.user.display_name+" poured "+a.data.drink.volume_ml+" ml of "+a.data.drink.keg.beverage.name,function(g,h){g?(console.log("Error:",g),c(a)):(console.log("Message sent: ",h),b(a))})})}exports.default=main;
+try{var d=require("@slack/client").IncomingWebhook}catch(i){console.log(i),c({message:"Could not load @slack/client",error:i.toString()})}var e=a.slack_webhook_url,f=new d(e);// data.drink.user.display_name  poured data.drink.volume_ml of data.drink.keg.beverage.name
+console.log(a);var g=a.data.drink.user.display_name+" poured "+a.data.drink.volume_ml+" ml of "+a.data.drink.keg.beverage.name,h={attachments:[{fallback:g,color:"#36a64f",pretext:g,text:g,image_url:a.data.drink.images[0].original_url,thumb_url:a.data.drink.images[0].thumbnail_url,footer:"Kegbot API",footer_icon:"https://platform.slack-edge.com/img/default_application_icon.png"}]};f.send(h,function(i,j){i?(console.log("Error:",i),c(a)):(console.log("Message sent: ",j),b(a))})})}exports.default=main;
 
 },{"@slack/client":1}]},{},[]);
 var main = require('main-action').default;

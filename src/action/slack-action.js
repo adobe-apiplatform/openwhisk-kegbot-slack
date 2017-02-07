@@ -193,7 +193,24 @@ function main(params) {
             // data.drink.user.display_name  poured data.drink.volume_ml of data.drink.keg.beverage.name
             console.log(params);
 
-            webhook.send(params.data.drink.user.display_name + " poured " + params.data.drink.volume_ml + " ml of " + params.data.drink.keg.beverage.name,
+            var slack_message_text = params.data.drink.user.display_name + " poured " + params.data.drink.volume_ml + " ml of " + params.data.drink.keg.beverage.name;
+
+            var slack_message = {
+                attachments: [
+                    {
+                        fallback: slack_message_text,
+                        color: "#36a64f",
+                        pretext: slack_message_text,
+                        text: slack_message_text,
+                        "image_url": params.data.drink.images[0].original_url,
+                        "thumb_url": params.data.drink.images[0].thumbnail_url,
+                        "footer": "Kegbot API",
+                        "footer_icon": "https://platform.slack-edge.com/img/default_application_icon.png"
+                    }
+                ]
+            }
+
+            webhook.send(slack_message,
                 function (err, res) {
                     if (err) {
                         console.log('Error:', err);
@@ -203,7 +220,6 @@ function main(params) {
                         resolve(params);
                     }
                 });
-
         }
     );
 }
