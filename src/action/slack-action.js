@@ -8,11 +8,11 @@
                         "images": [
                             {
                                 "keg_id": 1,
-                                "original_url": "http://52.204.245.247:80/media/pics/20170207020706-0dd12e706991423ab3f9282aef2143a8.jpg",
+                                "original_url": "https://cdn.theatlantic.com/assets/media/img/mt/2016/01/superman/facebook.jpg",
                                 "session_id": 2,
-                                "thumbnail_url": "http://52.204.245.247:80/media/CACHE/images/pics/20170207020706-0dd12e706991423ab3f9282aef2143a8/b7fddff42dc5c48e9ab6acf30db5f4a4.jpg",
+                                "thumbnail_url": "https://cdn.theatlantic.com/assets/media/img/mt/2016/01/superman/facebook.jpg",
                                 "time": "2017-02-07T02:07:06.706214+00:00",
-                                "url": "http://52.204.245.247:80/media/CACHE/images/pics/20170207020706-0dd12e706991423ab3f9282aef2143a8/9635cd5de7ced77f3bb20097b16ba25f.jpg",
+                                "url": "https://cdn.theatlantic.com/assets/media/img/mt/2016/01/superman/facebook.jpg",
                                 "user_id": "guest"
                             }
                         ],
@@ -165,7 +165,7 @@
                     },
                     "user_id": "guest"
                 },
- "param1": "https://hooks.slack.com/services/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",
+ "param1": "https://hooks.slack.com/services/T000000/B00000000/V000000000",
  "type": "event"
  }
  * @returns {Promise}
